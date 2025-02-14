@@ -25,7 +25,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./
-          server-dir: /{{ secrets.STAGING_FOLDER_PRIVATE }}/
+          server-dir: /${{ secrets.STAGING_FOLDER_PRIVATE }}/
           exclude: |
             public/*
             .git*
@@ -43,4 +43,4 @@ jobs:
       #     username: ${{ secrets.FTP_USER }}
       #     password: ${{ secrets.FTP_PASS }}
       #     local-dir: ./public/
-      #     server-dir: /{{ secrets.STAGING_FOLDER_PUBLIC }}/
+      #     server-dir: /${{ secrets.STAGING_FOLDER_PUBLIC }}/
