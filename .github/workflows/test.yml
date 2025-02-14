@@ -27,13 +27,10 @@ jobs:
           local-dir: ./
           server-dir: /${{ secrets.STAGING_FOLDER_PRIVATE }}/
           exclude: |
-            public/
-            public/**
-            .git*
-            .git*/**
             **/.git*
             **/.git*/**
-            **/node_modules/**
+            **/node_modules/*
+            **/public/**
             .env
 
       # - name: Upload public folder
