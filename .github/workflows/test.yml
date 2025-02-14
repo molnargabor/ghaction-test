@@ -27,14 +27,11 @@ jobs:
           local-dir: ./
           server-dir: /${{ secrets.STAGING_FOLDER_PRIVATE }}/
           exclude: |
-            public/*
-            .git*
-            .github/*
-            node_modules/*
-            storage/*
-            vendor/*
+            **/public/**
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
             .env
-            .env.example
 
       # - name: Upload public folder
       #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
