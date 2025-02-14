@@ -24,7 +24,6 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          protocol: ftps
           local-dir: ./
           server-dir: /{{ secrets.STAGING_FOLDER_PRIVATE }}/
           exclude: |
@@ -37,11 +36,11 @@ jobs:
             .env
             .env.example
 
-      - name: Upload public folder
-        uses: SamKirkland/FTP-Deploy-Action@4.1.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          local-dir: ./public/
-          server-dir: /{{ secrets.STAGING_FOLDER_PUBLIC }}/
+      # - name: Upload public folder
+      #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      #   with:
+      #     server: ${{ secrets.FTP_SERVER }}
+      #     username: ${{ secrets.FTP_USER }}
+      #     password: ${{ secrets.FTP_PASS }}
+      #     local-dir: ./public/
+      #     server-dir: /{{ secrets.STAGING_FOLDER_PUBLIC }}/
