@@ -1,0 +1,47 @@
+name: Deploy Laravel to cPanel STAGING env
+
+on: 'push'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Set up PHP
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #     php-version: '8.2'
+
+      # - name: Install dependencies
+      #   run: composer install --no-dev --prefer-dist --optimize-autoloader
+
+      - name: Upload Laravel files (excluding public)
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftps
+          local-dir: ./
+          server-dir: /{{ secrets.STAGING_FOLDER_PRIVATE }}/
+          exclude: |
+            public/*
+            .git*
+            .github/*
+            node_modules/*
+            storage/*
+            vendor/*
+            .env
+            .env.example
+
+      - name: Upload public folder
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./public/
+          server-dir: /{{ secrets.STAGING_FOLDER_PUBLIC }}/
